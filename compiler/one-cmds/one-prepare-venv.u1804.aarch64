@@ -97,7 +97,7 @@ ln -s bazelisk-linux-arm64 bazel
 # This script links project with TensorFlow dependency
 python3 ./configure.py
 
-bazel build build_pip_pkg
+./bazel build build_pip_pkg
 bazel-bin/build_pip_pkg artifacts
 
 # Install tensroflow_addons
