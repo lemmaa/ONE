@@ -26,7 +26,7 @@ ARM32_BUILD_ITEMS+=;pepper-csv2vec;crew
 ARM32_BUILD_ITEMS+=;oops;pepper-assert
 ARM32_BUILD_ITEMS+=;hermes;hermes-std
 ARM32_BUILD_ITEMS+=;loco;locop;logo-core;logo
-ARM32_BUILD_ITEMS+=;safemain;mio-circle08;mio-tflite2121
+ARM32_BUILD_ITEMS+=;safemain;mio-circle08;mio-tflite2131
 ARM32_BUILD_ITEMS+=;dio-hdf5
 ARM32_BUILD_ITEMS+=;luci-compute
 ARM32_BUILD_ITEMS+=;foder;circle-verify;souschef;arser;vconone
@@ -44,7 +44,7 @@ ARM32_HOST_ITEMS+=;pepper-csv2vec
 ARM32_HOST_ITEMS+=;oops
 ARM32_HOST_ITEMS+=;hermes;hermes-std
 ARM32_HOST_ITEMS+=;loco;locop;logo-core;logo
-ARM32_HOST_ITEMS+=;safemain;mio-circle08;mio-tflite2121
+ARM32_HOST_ITEMS+=;safemain;mio-circle08;mio-tflite2131
 ARM32_HOST_ITEMS+=;luci-compute
 ARM32_HOST_ITEMS+=;foder;circle-verify;souschef;arser;vconone
 ARM32_HOST_ITEMS+=;luci
@@ -136,9 +136,9 @@ int_test_arm32_host:
 # NOTE sync package versions with compiler/common-artifacts
 #
 int_prep_venv_arm32:
-	python3 -m venv $(BUILD_ARM32_FOLDER)/overlay/venv_2_12_1
-	$(BUILD_ARM32_FOLDER)/overlay/venv_2_12_1/bin/python3 -m pip install --upgrade pip setuptools
-	$(BUILD_ARM32_FOLDER)/overlay/venv_2_12_1/bin/python3 -m pip install --upgrade tensorflow==2.12.1 \
+	python3 -m venv $(BUILD_ARM32_FOLDER)/overlay/venv_2_13_1
+	$(BUILD_ARM32_FOLDER)/overlay/venv_2_13_1/bin/python3 -m pip install --upgrade pip setuptools
+	$(BUILD_ARM32_FOLDER)/overlay/venv_2_13_1/bin/python3 -m pip install --upgrade tensorflow==2.13.1 \
 		flatbuffers==23.5.26 protobuf==4.23.3 pydot==1.4.2 pytest==7.4.3
 
 #
