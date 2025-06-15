@@ -125,6 +125,11 @@ if(FlatBuffers_FOUND)
                        DEPENDS ${SCHEMA_FILES}
                        COMMENT "Generate '${TGT}' headers")
 
+    # NOTE Add dummy source file to avoid `ar` being executed with an empty
+    #      object file list. In macos, am error occurs if `ar` is executed
+    #      with an empty object file list.
+    list(APPEND OUTPUT_FILES "${CMAKE_CURRENT_FUNCTION_LIST_DIR}/dummy.cpp")
+
     # NOTE This header-only library is deliberately declared as STATIC library
     #      to avoid possible scope issues related with generated files
     add_library(${TGT} STATIC ${OUTPUT_FILES})
@@ -173,6 +178,11 @@ if(FlatBuffers_FOUND)
                                ${SCHEMA_FILES}
                        DEPENDS ${SCHEMA_FILES}
                        COMMENT "Generate '${TGT}' headers")
+
+    # NOTE Add dummy source file to avoid `ar` being executed with an empty
+    #      object file list. In macos, am error occurs if `ar` is executed
+    #      with an empty object file list.
+    list(APPEND OUTPUT_FILES "${CMAKE_CURRENT_FUNCTION_LIST_DIR}/dummy.cpp")
 
     # NOTE This header-only library is deliberately declared as STATIC library
     #      to avoid possible scope issues related with generated files
