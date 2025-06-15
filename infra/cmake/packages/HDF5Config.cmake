@@ -34,6 +34,7 @@ function(_HDF5_build)
                                  "-DBUILD_TESTING:BOOL=OFF"
                                  "-DHDF5_BUILD_EXAMPLES:BOOL=OFF"
                                  "-DHDF5_BUILD_TOOLS:BOOL=ON"
+                                 "-DHDF5_BUILD_CPP_LIB:BOOL=ON"
                                  "-DHDF5_ENABLE_SZIP_SUPPORT:BOOL=OFF"
                                  "-DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=OFF")
 
