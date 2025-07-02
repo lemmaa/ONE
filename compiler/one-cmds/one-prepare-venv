@@ -107,7 +107,7 @@ ${VENV_PYTHON} -m pip ${PIP_OPTIONS} install --upgrade pip setuptools
 
 PY_PKGS_TF="tensorflow-cpu"
 CPU_ARCH=$(uname -m)
-if [[ "$CPU_ARCH" == "aarch64" ]]; then
+if [[ "$CPU_ARCH" == "aarch64" || $CPU_ARCH == "arm64" ]]; then
   PY_PKGS_TF="tensorflow"
 fi
 PYTHON_PACKAGES="${PY_PKGS_TF}==${VER_TENSORFLOW} "
