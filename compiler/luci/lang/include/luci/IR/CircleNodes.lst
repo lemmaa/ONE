@@ -6,6 +6,10 @@
 #error "Define CIRCLE_VNODE"
 #endif // CIRCLE_VNODE
 
+#ifdef ARG_MAX
+#undef ARG_MAX
+#endif // ARG_MAX
+
 //
 // PLEASE SORT NODE DECLS IN ALPHABETICAL ORDER
 //
