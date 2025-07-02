@@ -56,17 +56,18 @@ if(DEFINED ENV{ONE_PIP_OPTION_TRUST_HOST})
   set(PIP_OPTION_TRUSTED_HOST --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org)
 endif()
 
-# NOTE `tensorflow-cpu` package is not available for aarch64, so we use `tensorflow` package.
+# NOTE `tensorflow-cpu` package is not available for `aarch64` and `arm64`, so we use `tensorflow` package.
 # NOTE refer https://github.com/Samsung/ONE/issues/15226 for versions
+set(TENSORFLOW_PKG "tensorflow-cpu")
+if((CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL "aarch64") OR (CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL "arm64"))
+  set(TENSORFLOW_PKG "tensorflow")
+endif()
+
 set(PY_PKG_LIST )
 if (PYTHON_VERSION_MINOR EQUAL 10)
   # python 3.10; Ubuntu 22.04
   # TF2.19.0 release at 2025-03-12
-  if(CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL "aarch64")
-    list(APPEND PY_PKG_LIST "tensorflow==2.19.0")
-  else(CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL "aarch64")
-    list(APPEND PY_PKG_LIST "tensorflow-cpu==2.19.0")
-  endif(CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL "aarch64")
+  list(APPEND PY_PKG_LIST "${TENSORFLOW_PKG}==2.19.0")
   list(APPEND PY_PKG_LIST "flatbuffers==24.3.25")
   list(APPEND PY_PKG_LIST "protobuf==4.23.3")
   list(APPEND PY_PKG_LIST "pydot==1.4.2")
@@ -77,11 +78,7 @@ if (PYTHON_VERSION_MINOR EQUAL 10)
 elseif (PYTHON_VERSION_MINOR EQUAL 12)
   # python 3.12; Ubuntu 24.04
   # TF2.19.0 release at 2025-03-12
-  if(CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL "aarch64")
-    list(APPEND PY_PKG_LIST "tensorflow==2.19.0")
-  else(CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL "aarch64")
-    list(APPEND PY_PKG_LIST "tensorflow-cpu==2.19.0")
-  endif(CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL "aarch64")
+  list(APPEND PY_PKG_LIST "${TENSORFLOW_PKG}==2.19.0")
   list(APPEND PY_PKG_LIST "flatbuffers==24.3.25")
   list(APPEND PY_PKG_LIST "protobuf==4.23.3")
   list(APPEND PY_PKG_LIST "pydot==1.4.2")
