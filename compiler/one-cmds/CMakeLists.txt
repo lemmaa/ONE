@@ -14,12 +14,10 @@ if(NOT Python_Interpreter_FOUND)
   return()
 endif()
 
-# NOTE assume only use 3.10.x or 3.12.x
+# NOTE assume only use 3.10.x ~ 3.12.x
 # NOTE PYTHON_VERSION_MINOR is not used but added for consistancy with common-artifacts and dalgona
-if((Python_VERSION VERSION_GREATER_EQUAL 3.10) AND (Python_VERSION VERSION_LESS 3.11))
-  set(PYTHON_VERSION_MINOR 10)
-elseif((Python_VERSION VERSION_GREATER_EQUAL 3.12) AND (Python_VERSION VERSION_LESS 3.13))
-  set(PYTHON_VERSION_MINOR 12)
+if((Python_VERSION VERSION_GREATER_EQUAL 3.10) AND (Python_VERSION VERSION_LESS 3.13))
+  set(PYTHON_VERSION_MINOR ${Python_VERSION_MINOR})
 else()
   # TODO support more
   message(STATUS "Build one-cmds: FAILED (Unsupported python: ${Python_VERSION})")

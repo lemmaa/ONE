@@ -16,11 +16,9 @@ if(NOT Python_Interpreter_FOUND)
   return()
 endif()
 
-# NOTE assume only use 3.10.x or 3.12.x
-if((Python_VERSION VERSION_GREATER_EQUAL 3.10) AND (Python_VERSION VERSION_LESS 3.11))
-  set(PYTHON_VERSION_MINOR 10)
-elseif((Python_VERSION VERSION_GREATER_EQUAL 3.12) AND (Python_VERSION VERSION_LESS 3.13))
-  set(PYTHON_VERSION_MINOR 12)
+# NOTE assume only use 3.10.x ~ 3.12.x
+if((Python_VERSION VERSION_GREATER_EQUAL 3.10) AND (Python_VERSION VERSION_LESS 3.13))
+  set(PYTHON_VERSION_MINOR ${Python_VERSION_MINOR})
 else()
   # TODO support more
   message(STATUS "Build common-artifacts: FAILED (Unsupported python: ${Python_VERSION})")
@@ -66,6 +64,16 @@ endif()
 set(PY_PKG_LIST )
 if (PYTHON_VERSION_MINOR EQUAL 10)
   # python 3.10; Ubuntu 22.04
+  # TF2.19.0 release at 2025-03-12
+  list(APPEND PY_PKG_LIST "${TENSORFLOW_PKG}==2.19.0")
+  list(APPEND PY_PKG_LIST "flatbuffers==24.3.25")
+  list(APPEND PY_PKG_LIST "protobuf==4.23.3")
+  list(APPEND PY_PKG_LIST "pydot==1.4.2")
+  list(APPEND PY_PKG_LIST "pytest==7.4.3")
+  list(APPEND PY_PKG_LIST "h5py==3.11.0")
+  list(APPEND PY_PKG_LIST "cffi==1.16.0")
+  list(APPEND PY_PKG_LIST "numpy==1.26.4")
+elseif (PYTHON_VERSION_MINOR EQUAL 11)
   # TF2.19.0 release at 2025-03-12
   list(APPEND PY_PKG_LIST "${TENSORFLOW_PKG}==2.19.0")
   list(APPEND PY_PKG_LIST "flatbuffers==24.3.25")
