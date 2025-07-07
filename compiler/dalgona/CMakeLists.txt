@@ -16,11 +16,9 @@ if(NOT Python_Development_FOUND)
   return()
 endif()
 
-# NOTE assume only use 3.10.x or 3.12.x
-if((Python_VERSION VERSION_GREATER_EQUAL 3.10) AND (Python_VERSION VERSION_LESS 3.11))
-  set(PYTHON_VERSION_MINOR 10)
-elseif((Python_VERSION VERSION_GREATER_EQUAL 3.12) AND (Python_VERSION VERSION_LESS 3.13))
-  set(PYTHON_VERSION_MINOR 12)
+# NOTE assume only use 3.10.x ~ 3.12.x
+if((Python_VERSION VERSION_GREATER_EQUAL 3.10) AND (Python_VERSION VERSION_LESS 3.13))
+  set(PYTHON_VERSION_MINOR ${Python_VERSION_MINOR})
 else()
   # TODO support more
   message(STATUS "Build dalgona: FAILED (Unsupported python: ${Python_VERSION})")
